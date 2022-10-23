@@ -1,0 +1,119 @@
+CyclisticBikeShare Case Study
+Google Data Analytics Professional Certificate Capstone Project
+
+header_image
+
+Scenario
+The course simulates you working at a fictitious company, as the course briefing cites:
+
+You are a junior data analyst working in the marketing analyst team at Cyclistic, a bike-share company in Chicago. The director of marketing believes the company’s future success depends on maximizing the number of annual memberships. Therefore, your team wants to understand how casual riders and annual members use Cyclistic bikes differently. From these insights, your team will design a new marketing strategy to convert casual riders into annual members. But first, Cyclistic executives must approve your recommendations, so they must be backed up with compelling data insights and professional data visualizations.
+
+1 - Ask
+Business task
+The company's director of marketing wants to identify how do annual members and casual riders use Cyclistic bikes differently, with this, we can postulate a hypotheses about differences in user behaviour between casual riders and annual members. Hopefully, the results will culminate in getting more casual riders assigning for annual memberships.
+
+2 - Prepare
+Data sources
+To answer the business task, I used three distinct, reliable and cited datasets:
+
+Cyclistic Trip Data: This dataset is publicly available by the course and it comprises of trip data (primary key; type of bike and member; id, name, latitude and longitude of stations) from a variety of customers since 2013. To make the data comprehensive and curent, I'm using the months 2022 from january to august.
+Weather Historical Forecast: Weather is always a strong causation phenomenom to see the frequency of bike rides on that specific day, so I gathered this public data from the National Weather Service website from the city of Chicago. To make the data comprehensive and curent, I'm using the months 2022 from january to august.
+Federal Holidays: I assume that there is a correlation between bike rides and holidays, so I got the data provided by Google about the names and dates of federal holidays in Chicago. To make the data comprehensive and curent, I'm using the months 2022 from january to august.
+Data credibility
+Data can be considered reliable, original, comprehensive, current and cited. Despite the fact that in the Cyclistic trip data license agreement any warranty of accuracy is disclaimed, it can be considered overall reliable as well, even though being a fictitious dataset. It therefore provides us with the information needed to complete the business task.
+
+3 - Process
+Tools I have used in this project
+Microsoft Excel: To transform the first instances of weather and holiday data to tabular data; to get familiar with the dataset and perform a quick scan for future cleansing with SQL.
+Google BigQuery: I believe that combining all the 8 months of data in SQL will be better for productivity, since there were plenty of repeated patterns on all the datasets.
+Tableau: Provides data visualization and easily demonstrates the insights to the stakeholders.
+Manipulation and cleaning of data
+A series of steps were made to convey the maximum efficieny possible while manipulating and cleaning data, I find that cleaning with SQL is more efficient since you can join all tables and just do one command, instead of cleaning each dataset separately, this amount of data would be too much for Excel to handle.
+
+You can check all the queries done on SQL with this link. You can also check all the succesful changes that were made on the data set by going to the Changelog section at the end of this notebook.
+
+Downloaded the files.
+Saved the Cyclistic trip data in .csv and .xlsx format.
+Turned the Weather Historical Forecast and Federal Holidays data into .csv tabular data.
+I used Excel to prepare data, checking if the data is reliable, original, comprehensive, current, cited and doesn't contain bias. Also used it to check what cleaning will have to be done on SQL.
+Imported all data do BigQuery, joined all Cyclistic trip 8 months worth of data into a single BikeData2022 file.
+The following steps were taken in order to check data accuracy:
+a. Ensured data format is correct: Data was imported in the correct format to BigQuery in order to be manipulated through SQL.
+b. Checked and deleted null values: WHERE start_station_name, start_station_id, end_station_name and end_station_id IS NULL.
+c. Checked and deleted further inaccuracies, like 'ended_at' date earlier than 'started_at'.
+d. Checked and deleted records with 'test', 'Test', 'TEST', 'temp', 'Temp' or 'TEMP' in either 'start_station_name' or 'end_station_name'.
+e. Checked for spaces before and after string values.
+f. Checked for misspellings in rideable_type and member_casual columns.
+g. Checked for duplicates in ride_id.
+h. Added and populated the columns weekday and ride_length as shown in the changelog
+3 - Analyze
+Initial analysis
+Quering data that might not be essencial for answering the business question, but it does help to give some context and get acquainted with some facts. Making theses seemmingly nonsensical queries might seem counter productive and just for the sake of curiosity at first, but these inicial queries allow you do get insights of your dataset, leading to more relevant conclusions that may answer your business question.
+
+You can check all the queries done on SQL with this link. You can also check all the succesful changes that were made on the dataset by going to the Changelog section at the end of this notebook.
+
+57.66% users are annual members whereas 42.34% are casual riders. We already have the majority of the customers signed for the annual membership.
+In average, annual members use their bikes for 12.36 minutes and casuals used their bikes for 24.82 minutes.
+Casual riders have by far the longest ride lengths. This is clear statement that casuals use their bikes sporadically.
+Casuals have the biggest amount of rides on saturdays and sundays, but not for a wide margin.
+Number of rides increases in an almost linear way throught the months, reaching its peak in summer months. Average ride duration tends to be the same all around the months, making no difference in the season aspect. This is obviously due to weather conditions and does not have a specific impact on establishing differences between casual riders and annual members.
+By comparing the Cyclistic Trip Data number of rides with the Weather Historical Forecast daily weather forecast, it's pretty obvious that the weather conditions are a causation to the number of total rides in the day. The days with the least amount of rides are those with higher amounts of snow depth and the highest amount of rides are casuals with clear weather on weekends.
+By comparing the Cyclistic Trip Data number of rides with the Federal Holidays, there doesn't seem to have a strong correlation between those two datasets. The weather conditions seems to be a bigger correlation to the number of rides per day.
+4 - Share
+Preliminary analysis
+The following visualisations demonstrate the differences between Cyclistic’s casual riders and annual members in terms of user behaviour. These differences were based on data queried from the data sources cited above.
+
+As a preliminary analysis, we can see in the pie charts below that even though the amount of member rides is bigger, the average ride length is higher for the casual riders, indicating that when casuals acquire the service, they tend to use it for longer timer.
+
+image.pngimage.png
+
+Continuing with the preliminary analysis, we can see that although there are more annual members than casual riders, casuals represent a considerable percentage that can indeed increase Cyclistic’s revenue if they were to become annual members.
+
+When I put the number of rides of casual and annual members in a week basis, it's possible to see that the amount of rides for the casuals increase considerably on weekends, but the number or rides for the annual members are higher on weekdays. Casual riders average ride duration is much higher than that of annual members. This point enables us to understand that bike usage is intrinsically different between annual members and casual riders.
+
+Bar 1.png
+
+Reinforcing the chart above, it's possible to see that the average ride length below for casual members is increased on weekends, whereas the annual members maintain a steady marging throught the week.
+
+Bar 2.png
+
+Both groups tend to have a similar pattern when comparing the day in an hourly basis, but it's clearly visible the increase in the amount of rides for the annual members when they supposedly commute to work (between 6 to 9 am and 4 to 6 pm).
+
+We can formulate the initial hypothesis that casual riders use Cyclistic’s service for leisure purposes whereas annual members use it for shorter rides, like commuting to work.
+
+Cyclistic Trip Data vs Weather Historical Forecast
+Sheet 5.png
+
+Both groups show a similar habit throughout the year. This pattern could be related to the seasons of the year.
+
+Line 1.png
+
+Further exploring if there is a correlation between the season of the year and the number of rides, I have run a line chart with the average temperature of Chicago in 2022.
+
+Scatter 1.png
+
+Analysing the data from the graphs, both casuals and members present a positive correlation between the season of the year and the number of rides, implying that in both cases when the temperature arises, the number of rides also increases.
+
+Cyclistic Trip Data vs Federal Holidays
+By analysing the Federal Holidays compared to the number of rides on the Cyclistic Trip Data on the Analysis part, I found that there is no need to share a dashboard from these datasets because they don't seem to have a strong correlation. The weather conditions seems to be a bigger correlation to the number of rides per day.
+
+Plotting data on map
+Using the coordinates given by the Cyclistic Trip Data dataset, it's possible to plot in a map to get some valuable data.
+
+Map 1.png
+
+Map 2.png
+
+When I plot the start and end coordinates of rides on a map makes it easier to understand the habit patterns. The member points are scattered across the map while casual points are bigger and concentrated near touristic areas closer to the coast.
+
+5 - Act
+With the amount of data queried from the datasources above, it is possible to elaborate some pretty clear statements and take actions for answering the business question How do annual members and casual riders use Cyclistic bikes differently?
+
+CASUAL.png
+
+Steps for the future
+Here are some insights to the marketing team aiming to answer the business task: Design marketing strategies aimed at converting casual riders into annual members.
+
+Launch marketing campaigns in March or April, this is the period of the year when bike usage is greatly increased.
+Social media ads targeting people who have already experienced any bike-sharing service and who are interested in travel, outdoor sports, parks, museum, Chicago touristic landmarks, etc.
+Progressive discount on rates based on the ride length. The more minutes the members use the bikes the less they pay.
